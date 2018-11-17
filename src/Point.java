@@ -6,4 +6,8 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public double net(double firstWeight, double secondWeight, double bias){
+        return firstWeight*x + secondWeight*y + bias;
+    }
 }
