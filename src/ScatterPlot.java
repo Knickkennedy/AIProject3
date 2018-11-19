@@ -10,11 +10,14 @@ import java.util.ArrayList;
 
 public class ScatterPlot extends JFrame {
 
+    public XYDataset dataset;
+    public JFreeChart chart;
+
     public ScatterPlot(String title, ArrayList<Point> dayOne, ArrayList<Point> dayTwo, ArrayList<Point> dayThree){
         super(title);
 
-        XYDataset dataset = createDataSet(dayOne, dayTwo, dayThree);
-        JFreeChart chart = ChartFactory.createScatterPlot("Energy Consumption Prediction Across Days", "Time", "Energy Consumption", dataset);
+        this.dataset = createDataSet(dayOne, dayTwo, dayThree);
+        this.chart = ChartFactory.createScatterPlot("Energy Consumption Prediction Across Days", "Time", "Energy Consumption", dataset);
         ChartPanel panel = new ChartPanel(chart);
         setContentPane(panel);
     }
@@ -29,6 +32,9 @@ public class ScatterPlot extends JFrame {
         for(Point point : dayOne){
             dayOneSeries.add(point.x, point.y);
         }
+
+        dayOneSeries.add(-0.5, -0.5);
+        dayOneSeries.add(1.2, 1.2);
 
         collection.addSeries(dayOneSeries);
 
